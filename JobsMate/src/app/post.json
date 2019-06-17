@@ -1,0 +1,24 @@
+import{ Post } from '../post;
+ 
+ posts:Post[]=[
+{
+    jobid:001;
+    jobTitle:"SDE";
+    Description:"1.Experience on Angular version 1 (or) Angular 1.X.
+    2 Candidate must have minimum 2 years of experience in Angular 1 (or) Angular 1.X.
+    3. Should have minimum 2years experience in HTML,CSS,BOOTSTRAP,JQUERY 
+    4.Should have knowledge of unit testing 
+    5.Candidate must have worked on minimum two projects with Angular. ";
+    company:"ABC";
+    domain:"CSE";
+    skillset:["HTML","CSS","ANGULAR"];
+    minsalary:10000;
+    maxsalary:200000;
+    Recruiter:"AJAY";
+    postedDate:"10-02-2018";
+    expiryDate:"10-02-2018";
+    ApplicantList:[];
+    experience:3;
+    active:TRUE;
+    location:"BANGALORE";
+}]

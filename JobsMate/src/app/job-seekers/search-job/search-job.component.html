@@ -1,0 +1,32 @@
+
+    <table matSort (matSortChange)="sortData($event)" cellpadding="10px" cellspacing="10px">
+        <tr>
+          <th mat-sort-header="name">Job Type</th>
+          <th mat-sort-header="location">location</th>
+        </tr>    
+<!--div class="container" fxLayout="row wrap" fxLayoutGap="15px"-->
+  <tr *ngFor="let p of postlists">
+      <td>
+    <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Job </mat-card-title>
+          <mat-card-subtitle>Details</mat-card-subtitle>
+        </mat-card-header>
+<b> Jobid </b>{{p.jobid}}  <b> JobTitle </b>{{p.jobTitle}} <b>Company Name</b>{{p.company}}
+<b> SkillSets</b>{{p.skillset}} 
+ <b>Salary Range</b>  {{p.minsalary}}  ---   {{p.maxsalary}} <br>
+<b>Recruiter</b>{{p.Recruiter}} 
+<b>Total Experience</b>{{p.experience}} 
+<b>Work Location</b>{{p.location}} 
+<mat-card-actions>
+  <button mat-button>Apply</button>
+  <button mat-button>Read More</button>
+</mat-card-actions>
+
+</td>
+<td>{{p.location}}</td>
+</tr>
+</table>
+
+ 
+ 

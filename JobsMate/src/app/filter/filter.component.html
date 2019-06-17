@@ -1,0 +1,49 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+  <div class="filter">
+          <h4>Filters</h4>
+          <div>
+              <mat-form-field apearance="outline">
+                      <input placeholder="Search by skillset" matInput  [matAutocomplete]="auto" formControlName="skillset">
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of options" [value]="option">
+                          {{option}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <mat-icon matPrefix>search</mat-icon>
+                    </mat-form-field>
+                  </div>
+                  <br>
+                  <mat-divider></mat-divider>
+                  <br>
+                  <h4>Location</h4>
+      
+<mat-checkbox>Bangalore</mat-checkbox><br>
+<mat-checkbox>chennai</mat-checkbox><br>
+<mat-checkbox>hyderabad</mat-checkbox><br>
+<mat-checkbox>delhi</mat-checkbox><br>
+
+<br>
+<mat-divider></mat-divider>
+<h4>company</h4>
+      
+<mat-checkbox>ABC</mat-checkbox><br>
+<mat-checkbox>XYZ</mat-checkbox><br>
+<mat-checkbox>PAR</mat-checkbox><br>
+<mat-checkbox>EFG</mat-checkbox><br>
+
+<br>
+<mat-divider></mat-divider>
+<h4>JobTitle</h4>
+      
+<mat-checkbox>SSE</mat-checkbox><br>
+<mat-checkbox>TA</mat-checkbox><br>
+<mat-checkbox>SE</mat-checkbox><br>
+<mat-checkbox>HRM</mat-checkbox><br>
+
+<br>
+<mat-divider></mat-divider>
+  </div>
+                </form>
+
+
+  
