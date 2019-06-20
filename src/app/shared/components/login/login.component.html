@@ -1,0 +1,68 @@
+
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+          </mat-form-field></td>
+        </tr></table>
+      </form>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
+
+
+<!-- <mat-card id="login-card">
+    <div class="loginFrm">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6 text-right lbl-line-height">
+         
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field >
+                <input matInput placeholder="User Name">
+              </mat-form-field>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6 text-right lbl-line-height">
+              
+          </div>
+          <div class="col-sm-6">
+              <mat-form-field >
+                  <input matInput type="password" placeholder="Password" >
+                </mat-form-field>
+          </div>
+        </div>
+      </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="offset-6 col-sm-6">
+           <button mat-raised-button color="primary" (click)="fnLogin()" >Login</button>
+          
+           <a href="#/register"> To register Click here</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  </mat-card> -->
