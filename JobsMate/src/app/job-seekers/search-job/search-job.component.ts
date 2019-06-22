@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '../../classts/Post';
-import { PostJobService } from 'src/app/post-job.service';
-import { POSTLIST } from 'src/app/postlists';
-import { Sort,MatSort } from '@angular/material/sort';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Post } from '../../post';
+import { POSTS } from '../../postData';
+import { JobService } from '../../job.service';
+import { Sort, MatCardTitle, MatSort } from '@angular/material';
+import {Router,ActivatedRoute} from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Subscribable, Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,45 +14,56 @@ import { Sort,MatSort } from '@angular/material/sort';
   styleUrls: ['./search-job.component.css']
 })
 export class SearchJobComponent implements OnInit {
-
-  postlists: Post[];
-
-
-  constructor(private  postJobService: PostJobService) {
-    this.postlists = POSTLIST.slice();
-   }
-
-  ngOnInit() {  
-      
-
-  this.postJobService.getpostlist()
-  .subscribe(data=>this.postlists=data)
+public searchText: string;
+  //job: Post;
+  profile: Post[];
+  filterForm:FormGroup;
+  subscription: Subscription;
+  constructor(private formBuilder: FormBuilder,private service: JobService,private router:Router,private route:ActivatedRoute ) {
+    // this.profile = POSTS.slice();
   }
+
+  ngOnInit() {
+    this.subscription = this.service.postSubject.subscribe(profile => this.profile = profile);
+    this.service.getJobs();
+  }
+
   sortData(sort: Sort) {
-    const data = POSTLIST.slice();
+    const data = POSTS.slice();
     if (!sort.active || sort.direction === '') {
-      this.postlists = data;
+      this.profile = data;
       return;
     }
 
-    this.postlists = data.sort((a, b) => {
+    this.profile = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'jobid': return this.compare(a.jobid, b.jobid, isAsc);
-        case 'jobTitle': return this.compare(a.jobTitle, b.jobTitle, isAsc);
-        case 'company': return this.compare(a.company, b.company, isAsc);
+        case 'id': return this.compare(a.id, b.id, isAsc);
+        case 'name': return this.compare(a.name, b.name, isAsc);
+        case 'domain': return this.compare(a.domain, b.domain, isAsc);
         case 'location': return this.compare(a.location, b.location, isAsc);
         default: return 0;
       }
     });
   }
-  compare(a: string | number | String, b: string | number | String, isAsc: boolean) {
+
+  // getJobs(): void {
+  //   // this.service.getJobs().subscribe(profile => this.profile = profile);
+    
+  //   console.log(this.profile);
+  // }
+  compare(a, b, isAsc) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
-  
-  }
-  
+
+  // apply(){
+  //   this.router.navigate(['./apply/:id'],{
+  //     queryParams:{profile:JSON.stringify(this.profile)}
+  //   })
+    
+  // }
+
+}
 
 
-  
 

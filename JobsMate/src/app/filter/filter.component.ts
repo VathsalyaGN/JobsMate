@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { PostJobService } from '../post-job.service';
-
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { JobService } from '../job.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-filter',
@@ -9,22 +9,24 @@ import { PostJobService } from '../post-job.service';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-
+  
   filterForm:FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private  postJobService: PostJobService) { }
+  constructor(private formBuilder: FormBuilder,private service: JobService) { }
 
   ngOnInit() {
+    
 
-    this.filterForm=this.formBuilder.group({
-      maxsalary:[2500000],
-      minsalary:[10000],
-      jobTitle:"",
-      company:"",
-      skillset:['']
+    this.filterForm = this.formBuilder.group({
+      
+      fulltime:[false],
+      parttime: [false],
+      internship:[false]
     });
-    this.filterForm.valueChanges.subscribe(price => {
-      this.postJobService.getFilter(price);
+  
+    this.filterForm.valueChanges.subscribe(x => {
+      this.service.getFilter(x);
+      console.log(x);
     });
   }
 

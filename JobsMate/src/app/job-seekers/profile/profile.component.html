@@ -1,29 +1,19 @@
-<p>
-  profile works!
-</p>
-<form [formGroup]="sortForm" >
-  <span class="total">{{postlist.length}} Results</span>
+ <tr *ngFor="let profile of user ">
+              
+  <td>
+    <mat-card>
+      
 
-  <div class="sort"><span>SORT BY</span> &nbsp;
-    <span (click)="ratingFiter()"><mat-icon>swap_vertical</mat-icon>Ratings Only</span>&nbsp;
-    <span (click)="priceFilter()"><mat-icon>swap_vertical</mat-icon>Price Only</span>
-    </div>
-    <div class="clear"></div>
-
-
-<br>
-<div fxLayout="row wrap" fxLayoutGap="10px">
-  <div *ngFor="let post of postlist" class="item">
-    <app-searchdata-item fxFlex fxLayout="row" [postlInstance]="post"></app-searchdata-item>
-  </div>
-  <mat-divider></mat-divider>
-</div>
-
-</form>
-<mat-divider></mat-divider> 
-<br>
-<div fxLayout="row wrap" fxLayout="15px">
-  <app-search-job ></app-search-job>
-  <mat-divider></mat-divider> 
-
-</div>
+      
+      <mat-card-content>
+         <p>  <b>Id </b>{{profile.id}}<br>
+            <b>NAME </b> {{profile.name}}<br>
+            <b> DESCRIPTION- </b>{{profile.description}}<br>
+            <b> COMPANY - </b>{{profile.company}} &nbsp; &nbsp; <b>DOMAIN </b>{{profile.domain}}
+            <b> SKILLSET - </b>{{profile.skillset}}
+          </p>
+          <button mat-raised-button color="primary" (click)="edit()">Edit</button>
+      </mat-card-content></mat-card>
+      </td>
+    </tr>
+  

@@ -1,0 +1,22 @@
+
+<mat-card>
+  <div class="container">
+    <mat-card-header>
+        <mat-card-title>User</mat-card-title>
+      </mat-card-header>
+    </div>
+<mat-card-content>
+  <form [formGroup]="editForm" (ngSubmit)="onFormSubmit()">
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <input formControlName="FirstName" matInput placeholder="vathsalya">
+          </mat-form-field>
+          <mat-error>
+            <span *ngIf="!editForm.get('FirstName').valid && editForm.get('FirstName').touched">Please enter First Name
+              !!!</span>
+              <button mat-raised-button color="primary">Update</button>
+          </mat-error>
+        </td>&nbsp;
+   </tr></table>

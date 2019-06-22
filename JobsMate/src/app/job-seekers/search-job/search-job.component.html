@@ -1,32 +1,109 @@
+  <!-- <div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="15%" color="primary">Item 1</div>
+  <div class="item item-2" fxFlex="20%" fxFlexOrder="3">Item 2</div>
+  <div class="item item-3" fxFlex>Item 3</div>
+</div>
 
-    <table matSort (matSortChange)="sortData($event)" cellpadding="10px" cellspacing="10px">
-        <tr>
-          <th mat-sort-header="name">Job Type</th>
-          <th mat-sort-header="location">location</th>
-        </tr>    
-<!--div class="container" fxLayout="row wrap" fxLayoutGap="15px"-->
-  <tr *ngFor="let p of postlists">
-      <td>
-    <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Job </mat-card-title>
-          <mat-card-subtitle>Details</mat-card-subtitle>
-        </mat-card-header>
-<b> Jobid </b>{{p.jobid}}  <b> JobTitle </b>{{p.jobTitle}} <b>Company Name</b>{{p.company}}
-<b> SkillSets</b>{{p.skillset}} 
- <b>Salary Range</b>  {{p.minsalary}}  ---   {{p.maxsalary}} <br>
-<b>Recruiter</b>{{p.Recruiter}} 
-<b>Total Experience</b>{{p.experience}} 
-<b>Work Location</b>{{p.location}} 
-<mat-card-actions>
-  <button mat-button>Apply</button>
-  <button mat-button>Read More</button>
-</mat-card-actions>
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div class="item item-4" fxFlex fxFlexOffset="50px"  fxFlexOffset.xs="0">Item 4</div>
+  <div class="item item-5" fxFlex="200px">Item 5</div>
+</div> -->
 
-</td>
-<td>{{p.location}}</td>
-</tr>
-</table>
+<!-- <div class="container"
+            fxLayout
+            fxLayout.xs="column"
+            fxLayoutAlign="center"
+            fxLayoutGap="10px"
+            fxLayoutGap.xs="0">
+        <mat-card class="card" *ngFor="let profile of profile">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title><b>{{profile.name}}</b></mat-card-title>
+              <mat-card-subtitle>{{profile.company}}<br>
+                  <b>{{profile.salary}} - {{profile.maxSalary}} a year</b></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{profile.description}}<br><br>
+                 <b>Desired Experience: </b> {{profile.skillset}}<br><br>
+                 <b> Recruiter - </b>{{profile.recruiter}}<br><br>
+                 <b> Posted Date - </b>{{profile.postedDat}} &nbsp; &nbsp; <b>Expiry Date - </b>{{profile.expiryDate}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="primary">Read More</button>
+              <button mat-raised-button color="primary">Apply</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>  -->
 
- 
- 
+
+
+    
+<mat-drawer-container class="container-fluid">
+    <mat-drawer mode="side" opened>
+     <span>FILTER</span> <a href=" " class="spnRight">CLEAR</a><br><br>
+     SKILLS
+     <p>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Search for a skill</mat-label>
+          <input matInput placeholder="Search for a skill" [(ngModel)]="searchText">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Hint:- Html, Css, JavaScript</mat-hint>
+        </mat-form-field>
+      </p><br>
+      <app-filter></app-filter>
+      <h6>Company Size</h6>
+      <mat-checkbox>1-10 employees</mat-checkbox><br>
+      <mat-checkbox>11-50 employees</mat-checkbox><br>
+      <mat-checkbox>50-200 employees</mat-checkbox><br>
+      <mat-checkbox>More than 200 employees</mat-checkbox>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <table matSort (matSortChange)="sortData($event)" cellpadding="10px" cellspacing="10px">
+            <tr>
+              <th mat-sort-header="name">Job Type</th>
+              <th mat-sort-header="location">location</th>
+            </tr>
+            <tr *ngFor="let profile of profile | jobSearch: {name: searchText, company:searchText,  recruiter: searchText}; let i = index;">
+              
+              <td>
+                <mat-card>
+                  <mat-card-header>
+                      <div mat-card-avatar class="example-header-image"></div>
+                      <mat-card-title><b>{{profile.name}}</b></mat-card-title>
+                      <mat-card-subtitle>{{profile.company}}<br>
+                          <b>{{profile.salary}} - {{profile.maxSalary}} a year &nbsp; ({{profile.jobType}})</b></mat-card-subtitle>
+                  </mat-card-header>
+                  
+                  <mat-card-content>
+                      <p>{{profile.description}}<br>
+                        <b>Desired Experience: </b> {{profile.skillset}}<br>
+                        <b> Recruiter - </b>{{profile.recruiter}}<br>
+                        <b> Posted Date - </b>{{profile.postedDat}} &nbsp; &nbsp; <b>Expiry Date - </b>{{profile.expiryDate}}
+                     </p>
+                  </mat-card-content>
+                  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-raised-button color="primary">Read More</button>
+                    <button mat-raised-button color="primary" 
+                    [routerLink]="['../application',profile.id]"           
+                    >Apply</button>
+                  </mat-card-actions>
+                </mat-card>
+              </td>
+              <td>{{profile.location}}</td>
+            </tr>
+          </table>
+    </mat-drawer-content>
+  </mat-drawer-container> 

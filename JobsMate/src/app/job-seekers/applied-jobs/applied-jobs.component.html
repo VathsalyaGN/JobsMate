@@ -1,3 +1,16 @@
-<p>
-  applied-jobs works!
-</p>
+<mat-card *ngIf="profile">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title><b>{{profile.name}}</b></mat-card-title>
+      <mat-card-subtitle>{{profile.company}}<br>
+          <b>{{profile.salary}} - {{profile.maxSalary}} a year &nbsp; ({{profile.jobType}})</b></mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+      <p>{{profile.description}}<br>
+        <b>Desired Experience: </b> {{profile.skillset}}<br>
+        <b> Recruiter - </b>{{profile.recruiter}}<br>
+        <b> Posted Date - </b>{{profile.postedDat}} &nbsp; &nbsp; <b>Expiry Date - </b>{{profile.expiryDate}}
+     </p>
+  </mat-card-content>
+</mat-card>
